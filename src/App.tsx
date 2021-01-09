@@ -72,13 +72,15 @@ const App=()=> {
   };
 
   return (
+    <>
+    <GlobalStyle />
     <div className='App'>
         <h1>React Quiz</h1>
         {gameOver || userAnswers.length === TOTAL_QUESTIONS ? (
         <button className="start" onClick={startTrivia}>
             Start
         </button>) : null}
-        {gameOver || userAnswers.length === TOTAL_QUESTIONS ? (<p className="score">Score:</p>) : null}
+        {gameOver || userAnswers.length === TOTAL_QUESTIONS ? (<p className="score">Score: {score}</p>) : null}
         {loading ? <p>Loading Question...</p>:null}
         {!loading && !gameOver && (
           <QuestionCard
@@ -96,6 +98,7 @@ const App=()=> {
           </button>
         ) : null}
     </div>
+    </>
   );
 }
 

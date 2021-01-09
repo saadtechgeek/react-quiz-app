@@ -74,7 +74,7 @@ const App=()=> {
   return (
     <>
     <GlobalStyle />
-    <div className='App'>
+    <Wrapper>
         <h1>React Quiz</h1>
         {gameOver || userAnswers.length === TOTAL_QUESTIONS ? (
         <button className="start" onClick={startTrivia}>
@@ -97,7 +97,7 @@ const App=()=> {
             Next Question
           </button>
         ) : null}
-    </div>
+    </Wrapper>
     </>
   );
 }

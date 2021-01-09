@@ -32,12 +32,11 @@ const App=()=> {
     setLoading(true);
     setGameOver(false);
     const newQuestion = await fetchQuizQuestions(10,Difficulty.EASY);
-
     setQuestions(newQuestion);
     setScore(0);
     setUserAnswers([]);
     setNumber(0);
-    
+    setLoading(false);
   }
 
   const checkAnswer = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -55,16 +54,18 @@ const App=()=> {
         <button className="start" onClick={startTrivia}>
             Start
         </button>) : null}
-        <p className="score">Score:</p>
-        <p>Loading Question...</p>
-        {/* <QuestionCard
+        {gameOver || userAnswers.length === TOTAL_QUESTIONS ? (<p className="score">Score:</p>) : null}
+        {loading ? <p>Loading Question...</p>:null}
+        {!loading && !gameOver && (
+          <QuestionCard
             questionNr={number + 1}
             totalQuestions={TOTAL_QUESTIONS}
             question={questions[number].question}
             answers={questions[number].answers}
             userAnswer={userAnswers ? userAnswers[number] : undefined}
             callback={checkAnswer}
-          /> */}
+          />
+        )}
         <button className='next' onClick={nextQuestion}>Next Question</button>
     </div>
   );
